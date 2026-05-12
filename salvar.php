@@ -1,0 +1,33 @@
+<?php
+include 'conexao.php';
+// Adicionar em salvar.php antes do INSERT
+$data_nasc = new DateTime($_POST['data_nascimento']);
+$hoje = new DateTime();
+$idade = $hoje->diff($data_nasc)->y;
+
+if ($id_pai == $id_mae && $id_pai != NULL) {
+    die("<div class='alert alert-danger'>Erro: Pai e Mãe não podem ser a mesma pessoa.</div>");
+}
+
+// Captura os dados do formulário
+$nome = $_POST['nome'];
+$data_nascimento = $_POST['data_nascimento'];
+$sexo = $_POST['sexo'];
+$bi = $_POST['bi'];
+$id_pai = !empty($_POST['id_pai']) ? $_POST['id_pai'] : NULL;
+$id_mae = !empty($_POST['id_mae']) ? $_POST['id_mae'] : NULL;
+$apelido_familiar = $_POST['apelido_familiar'];
+
+// Correção: Usando $conn (definido no conexao.php) em vez de $conexao
+$stmt = $conn->prepare("INSERT INTO pessoas (nome, data_nascimento, sexo, bi, id_pai, id_mae, apelido_familiar) VALUES (?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssiis", $nome, $data_nascimento, $sexo, $bi, $id_pai, $id_mae, $apelido_familiar);
+
+if($stmt->execute()){
+    header("Location: listar.php?sucesso=1");
+} else {
+    echo "Erro ao salvar: " . $conn->error;
+}
+
+$stmt->close();
+$conn->close();
+?>

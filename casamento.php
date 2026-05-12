@@ -1,0 +1,47 @@
+<?php include 'conexao.php'; ?>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>SGF | União Civil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card-glass">
+                <h3 class="fw-bold mb-2">Registo de <span style="color: var(--primary)">União</span></h3>
+                <p class="text-secondary small mb-4">Selecione os cônjuges para formalizar o vínculo.</p>
+                <form action="salvar_casamento.php" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label text-secondary small">Primeiro Cônjuge</label>
+                        <select name="id_pessoa1" class="form-select" required>
+                            <?php 
+                            $res = $conn->query("SELECT id, nome FROM pessoas ORDER BY nome ASC");
+                            while($r = $res->fetch_assoc()) echo "<option value='{$r['id']}'>{$r['nome']}</option>";
+                            ?>
+                        </select>
+                    </div>
+                    <div class="mb-3 text-center py-2">
+                        <span class="badge rounded-pill bg-dark border border-secondary">+</span>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-secondary small">Segundo Cônjuge</label>
+                        <select name="id_pessoa2" class="form-select" required>
+                            <?php 
+                            $res->data_seek(0);
+                            while($r = $res->fetch_assoc()) echo "<option value='{$r['id']}'>{$r['nome']}</option>";
+                            ?>
+                        </select>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn-modern btn-primary-modern w-100 justify-content-center">Registar Casamento</button>
+                        <a href="index.php" class="btn-modern btn-outline-modern">Sair</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
