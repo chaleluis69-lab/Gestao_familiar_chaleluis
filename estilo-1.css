@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg-main: #3a65f5;    
+    --card-bg: #ffffff;  
+    --primary: #000000;    
+    --text-main: #1e293b;  
+    --secondary: #1c2027;  
+    --border: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--bg-main);
+    color: #000000(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.6;
+}
+
+.card-glass {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+h1, h2, h3, h4, .fw-bold {
+    color: #000000 ;
+}
+
+.btn-modern {
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+
+.btn-primary-modern {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.btn-primary-modern:hover {
+    background: #1b232e;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-modern {
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: #000000;
+}
+
+.btn-outline-modern:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
+.form-control, .form-select {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #0f172a;
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    background: #ffffff;
+    border-color: var(--bg-main); 
+    box-shadow: 0 0 0 2px rgba(58, 101, 245, 0.2);
+    color: #000000;
+}
+
+.table { 
+    color: var(--text-main); 
+    border-color: #e2e8f0;
+}
+
+.table thead {
+    background-color: #f1f5f9;
+    color: #000000;
+}
